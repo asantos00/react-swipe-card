@@ -62,8 +62,8 @@ class DraggableCard extends Component {
       this.props[`onSwipe${direction}`]()
       this.props[`onOutScreen${direction}`](this.props.index)
     } else {
-      this.resetPosition()
       this.setState({ animation: true })
+      this.resetPosition()
     }
 
   }
@@ -111,7 +111,8 @@ class DraggableCard extends Component {
   }
   render () {
     const { x, y, animation, pristine } = this.state
-    const style = translate3d(x, y)
+    const translate = translate3d(x, y)
+    const style = { ...this.props.style, ...translate }
     return <SimpleCard {...this.props} style={style} className={animation ? 'animate' : pristine ? 'inactive' : '' } />
   }
 }
